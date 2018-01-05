@@ -3,9 +3,7 @@
 #
 hello <- function(x) {
 
-  print("Hello, world!")
-
-  select(iris, Sepal.Length)
+  print("Hello, world! 2")
 
 }
 
