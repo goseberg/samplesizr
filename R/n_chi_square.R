@@ -1,4 +1,4 @@
-n_chi_square <- function(sig,pow,pow.exact=FALSE,r,r.strict=TRUE,p_Y,p_X){
+n_chi_square <- function(sig, pow, pow.exact=FALSE, r, r.strict=TRUE,p_Y,p_X){
   cat("Sample Size Calculation \n")
   cat("Chi-Square test for rates comparing two groups\n")
   cat("using abolute rate difference for comparison\n")
@@ -11,7 +11,7 @@ n_chi_square <- function(sig,pow,pow.exact=FALSE,r,r.strict=TRUE,p_Y,p_X){
                  qnorm(pow) * sqrt(r*p_X*(1-p_X)+p_Y*(1-p_Y)) )^2
     n_x_den <- r * effect^2
     n_x <- n_x_num / n_x_den
-    N<-.group_balance(n_x = n_x, r = r, r.strict = r.strict)
+    N <- .group_balance(n_x = n_x, r = r, r.strict = r.strict)
     power <- .binomial_exact_power(sig = sig, n_x = N$n_x, n_y = N$n_y, p_X = p_X, p_Y = p_Y)
     result <- append(N,power)
     names(result)<-c("n_x", "n_y", "n", "power")

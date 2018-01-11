@@ -2,17 +2,12 @@
 #
 # To deal with certain allocation r, this function
 #
-
 .get_fraction <- function(x) {
   tmp <- strsplit(attr(fractions(x),"fracs"), "/")[[1]]
   list(numerator=as.numeric(tmp[1]),denominator=as.numeric(tmp[2]))
 }
 
-#' @param r.strict Default = TRUE, specifies if the allocation r should be treated strict, that means
-#' if the resulting group sizes should be managed strictly
-#'
-
-.group_balance <- function(n_x,r=1,r.strict=TRUE) {
+.group_balance <- function(n_x,r,r.strict=TRUE) {
 
   if (r.strict == FALSE) {
     .n_y <- ceiling(r*n_x)

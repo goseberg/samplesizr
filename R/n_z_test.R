@@ -8,9 +8,9 @@
 #'
 #' @return Sample size for Group 1
 
-n_ztest = function(sig,pow,r,r.strict,effect,std){
-  n_x<-((1+r)/r) *(qnorm(1-sig/2)+qnorm(pow))^2 * (std/effect)^2
-  result<-.group_balance(n_x,r,r.strict)
+n_ztest = function(sig, pow, r, r.strict=TRUE, effect, std){
+  n_x     <- ((1+r)/r) *(qnorm(1-sig/2)+qnorm(pow))^2 * (std/effect)^2
+  result  <- .group_balance(n_x,r,r.strict)
   return(result)
 }
 

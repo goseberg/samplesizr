@@ -1,4 +1,5 @@
 #exportPattern("^[[:alpha:]]+")
 exportPattern("^[^\\.]")
 
-#importFrom(dplyr, select)
+importFrom("MASS", "fractions")
+importFrom("stats", "dbinom", "pt", "qnorm", "qt")
