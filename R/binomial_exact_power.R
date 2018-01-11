@@ -32,7 +32,7 @@
     num <- .get_fraction(r)$numerator
     den <- .get_fraction(r)$denominator
     if ( (r %% 1) == 0 ) {den <- 1}
-    i<-1
+    i <-1
     p<-0
 
     while (p<pow){
