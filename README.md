@@ -1,2 +1,3 @@
 # samplesizr
-Sample size calculation with R OR TAKE IT
+
+Sample size calculation with R
