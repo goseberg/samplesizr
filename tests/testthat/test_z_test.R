@@ -13,8 +13,8 @@ table_4_2_z_test <- array(table_4_2_z_test_data,dim=c(6,2))
 
 # Check Table 4_1
 
-# sig_vector <- c(.01, .05, .10)
-# pow_vector <- c(0.80, 0.90, 0.95, 0.99)
+ sig_vector <- c(.01, .05, .10)
+ pow_vector <- c(0.80, 0.90, 0.95, 0.99)
 #
 # for (i_sig in 1:3) {
 #
