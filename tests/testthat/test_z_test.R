@@ -1,70 +1,62 @@
+# TEST n_ztest
+#
+# This code is testing the function "n_ztest" according to[1] .
+
+# [1] M. Kieser:  Fallzahlberechnung in der medizinischen Forschung [2018],
+#                 Tabelle 4.2, p. 17-18.
+
 context("Test n_z_test")
 
-table_4_1_data <- c(11.7, 14.9, 17.8, 24.0,
-                    7.90, 10.5, 13.0, 18.4,
-                    6.40, 8.60, 10.8, 15.8
-)
-
-table_4_2_z_test_data <- c( 3140, 786,  350, 198, 126, 88,
-                            4204, 1052, 468, 264, 170, 118)
-
-table_4_1 <- array(table_4_1_data,dim=c(4,3))
-table_4_2_z_test <- array(table_4_2_z_test_data,dim=c(6,2))
-
-# Check Table 4_1
-
- sig_vector <- c(.01, .05, .10)
- pow_vector <- c(0.80, 0.90, 0.95, 0.99)
+# I DATA TABLE
 #
-# for (i_sig in 1:3) {
-#
-#   for (i_pow in 1:4){
-#
-#     sig    <- sig_vector[i_sig]
-#     pow    <- pow_vector[i_pow]
-#     effect <- 1
-#     std    <- 1
-#     r      <- 1
-#
-#     val_f <- n_ztest(
-#         sig      = sig,
-#         pow      = pow,
-#         r        = r,
-#         r.strict = TRUE,
-#         effect   = effect,
-#         std      = std
-#     )$n_x
-#
-#     val_table <- 2 * table_4_1[i_pow,i_sig]
-#     check     <- .group_balance(
-#       n_x= val_table, r = 1, r.strict = FALSE
-#     )$n_x
-#
-#     test_that("Test n_z_test", {
-#
-#       expect_equal(
-#         val_f, check,
-#         info = sprintf(
-#           "params: sig=%.2f, power=%.2f, effect=%.2f, std=%.2f, r = %.2f",
-#           sig, pow, effect, std, r
-#         )
-#       )
-#     })
-#   }
-# }
+#   CAVE: Note that the sample sizes are aranged in columns sorted in ascending
+#         order
 
-# Check Table 4_2
+pow_vector    <- c(0.80, 0.90)
+effect_vector <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0, 1.25, 1.5)
+n_ztest.80    <- c(3140, 786, 350, 198, 126, 88, 66, 50, 40, 32, 22, 14)
+n_ztest.90    <- c(4204, 1052, 468, 264, 170, 118, 86, 66, 52, 44, 28, 20)
 
-effect <- 0.1 * (1:6)
-#pow_vector_4_2 <- c(0.8, 0.9)
+table_42_z <- data.frame(
+              effect = effect_vector,
+              n.80   = n_ztest.80,
+              n.90   = n_ztest.90
+            )
 
-for (i_effect in 1:6) {
-  for (i_pow in 1:2){
-    val_f <- n_ztest(sig = .05, pow = pow_vector[i_pow], r = 1, r.strict = TRUE, effect = effect[i_effect], std = 1)$n
-    val_table <- table_4_2_z_test[i_effect, i_pow]
+
+# II TEST LOOP
+
+for (i_effect in 1:length(effect_vector)) {
+
+  for (i_pow in 1:length(pow_vector)){
+
+    alpha    <- .05
+    power    <- pow_vector[i_pow]
+    effect <- effect_vector[i_effect]
+    std    <- 1
+    r      <- 1
+
+    val_f <- n_ztest(
+        alpha      = alpha,
+        power      = power,
+        r        = r,
+        r.strict = TRUE,
+        effect   = effect,
+        sd      = sd
+    )$n
+
+    val_table <- table_42_z[i_effect, i_pow + 1]
 
     test_that("Test n_z_test", {
-      expect_equal(val_f,val_table)
+
+      expect_equal(
+        val_f, val_table,
+        info = sprintf(
+          "params: alpha=%.2f, power=%.2f, effect=%.2f, std=%.2f, r = %.2f",
+          alpha, power, effect, std, r
+        )
+
+      )
     })
   }
 }

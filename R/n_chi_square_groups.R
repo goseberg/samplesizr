@@ -1,4 +1,4 @@
-n_chi_square_k_groups <- function(sig,pow,n.groups,p_A){
+n_chisq_mult_groups <- function(sig,pow,n.groups,p_A){
 
   p_A_m <- mean(p_A)
   effect <- sum((p_A-p_A_m)^2)
