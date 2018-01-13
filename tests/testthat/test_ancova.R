@@ -9,3 +9,5 @@ context("Test n_ancova")
 #   NO DATA TO TEST AVAILABLE YET
 
 # II TEST LOOP
+
+cat("NOTE: No tests for ANCOVA implemented.")

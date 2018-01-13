@@ -11,8 +11,8 @@ context("Test n_chisq")
 
 # TABLE 5.2
 
-p_X_vector      <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)
-p_Y_vector      <- c(0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
+p_X_vector <- c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7)
+p_Y_vector <- c(0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
 
 # r = 1
 
@@ -55,8 +55,6 @@ n.r       <- c(252, 342)
 
 # TABLE 5.2
 
-# r = 1
-
 for (r in 1:2) {
   for (i_p_X in 1:length(p_X_vector)) {
 
@@ -85,7 +83,8 @@ for (r in 1:2) {
       p_Y      = p_Y_vector[i_p_X]
     )
 
-    val_table <- table_52_r1[i_p_X, ]
+    if (r == 1) {val_table <- table_52_r1[i_p_X, ]}
+    if (r == 2) {val_table <- table_52_r2[i_p_X, ]}
 
     test_that("Test n_chisq with Table 5.2 [1]", {
 
@@ -98,7 +97,7 @@ for (r in 1:2) {
       )
 
       expect_equal(
-        round(val_f_exact$power,3) * 100, val_table$pow_exact,
+        round(val_f_exact$power_out,3) * 100, val_table$pow_exact,
         info = sprintf(
           "params: alpha=%.2f, power=%.2f, r = %.2f, p_X=%.2f, p_Y=%.2f",
           alpha, power, r, p_X, p_Y
@@ -114,7 +113,7 @@ for (r in 1:2) {
       )
 
       expect_equal(
-        round(val_f_approx$power,3) * 100, val_table$pow_approx,
+        round(val_f_approx$power_out,3) * 100, val_table$pow_approx,
         info = sprintf(
           "params: alpha=%.2f, power=%.2f, r = %.2f, p_X=%.2f, p_Y=%.2f",
           alpha, power, r, p_X, p_Y
@@ -142,8 +141,8 @@ for (i_r in 1:length(r_vector)) {
     power.exact= TRUE,
     r        = r,
     r.strict = TRUE,
-    p_X      = p_X_vector[i_p_X],
-    p_Y      = p_Y_vector[i_p_X]
+    p_X      = p_X,
+    p_Y      = p_Y
   )
 
   val_table <- n.r[i_r]

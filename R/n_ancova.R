@@ -19,7 +19,7 @@
 #'   specified allocation exactly. If set to FALSE, the Sample size per
 #'   Group is round up to the next natural number.
 #' @param effect   Effect \eqn{\Delta_A} used as alternative hypothesis.
-#' @param corr     Correlation to Covariate.
+#' @param corr     Correlation  \eqn{rho} to Covariate.
 #' @param sd       Standard deviation \eqn{\sigma}.
 #' @param gs       Guenther/Schouten correcture. Default = TRUE. If set to TRUE,
 #'                 the G/S correcture like in (4.15) in [1] is used.
@@ -36,12 +36,13 @@
 #' n_ancova(alpha = .05, power = .90, r = 2, r.strict = FALSE, effect = 10, corr = .5, sd = 20, gs = FALSE)
 #'
 #' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
+#'
 #'  WARNING: Exact power output is going to be implemented in the future.
 
 # I n_ancova
 #
 
-n_ancova = function(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TRUE){
+n_ancova <- function(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TRUE){
 
   z_alpha <- qnorm(1 - alpha/2)
   n_X <- ((1+r)/r) * (z_alpha+qnorm(power))^2 * (1-corr^2) * (sd/effect)^2

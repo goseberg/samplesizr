@@ -21,18 +21,18 @@ n_f    <- c(348, 267)
 for (i_case in 1:ncol(cases)) {
   test_that("Test n_ftest with p.29 [1]", {
 
-    sig      <- .05
-    pow      <- .90
+    alpha    <- .05
+    power    <- .90
     n.groups <- 3
     mu       <- cases[ ,i_case]
-    std      <- 20
+    sd      <- 20
 
     val_f <- n_ftest(
-      sig      = sig,
-      pow      = pow,
+      alpha    = alpha,
+      power    = power,
       n.groups = n.groups,
       mu       = mu,
-      std      = std
+      sd      = sd
     )$n
 
     val_table <- n_f[i_case]
@@ -40,8 +40,8 @@ for (i_case in 1:ncol(cases)) {
    expect_equal(
     val_f, val_table,
     info = sprintf(
-      "params: sig=%.2f, power=%.2f, mu=%s, std=%.2f",
-      sig, pow, paste(mu, collapse = ","), std
+      "params: alpha=%.2f, power=%.2f, mu=%s, sd=%.2f",
+      alpha, power, paste(mu, collapse = ","), sd
     )
    )}
 

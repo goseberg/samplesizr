@@ -29,22 +29,23 @@
 
 .n_binomial_exact<-function(alpha, power, p_X, p_Y, r, r.strict=TRUE){
   if (r.strict == TRUE) {
-    num <- .get_fraction(r)$numerator
-    den <- .get_fraction(r)$denominator
-    if ( (r %% 1) == 0 ) {den <- 1}
-    i <-1
-    p<-0
+      num <- .get_fraction(r)$numerator
+      den <- .get_fraction(r)$denominator
+      if ( (r %% 1) == 0 ) {den <- 1}
+      i <-1
+      p <- 0
 
-    while (p<power){
-      .n_x <- den*i
-      .n_y <- num*i
-      i <- i+1
-      p <- .binomial_exact_power(alpha = alpha, n_X = .n_x, n_Y = .n_y, p_X = p_X, p_Y = p_Y)
-    }
-  result <- list(n_X = .n_x, n_Y = .n_y, n = .n_x + .n_y, power_out = p)
-  return(result)
+      while (p<power){
+        .n_x <- den*i
+        .n_y <- num*i
+        i <- i+1
+        p <- .binomial_exact_power(alpha = alpha, n_X = .n_x, n_Y = .n_y, p_X = p_X, p_Y = p_Y)
+      }
+
+    result <- list(n_X = .n_x, n_Y = .n_y, n = .n_x + .n_y)
+    return(result)
   }
-  if (r.strict == FALSE) {
-    cat("ERROR: Non-strict allocation handling to the exact power is going to be implemented in near future.")
+  else {
+    stop("ERROR: Non-strict allocation handling to the exact power is going to be implemented in near future.")
   }
 }
