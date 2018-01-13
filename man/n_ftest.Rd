@@ -13,9 +13,9 @@ n_ftest(alpha, power, n.groups, mu_A, sd)
 
 \item{n.groups}{Number of Groups \eqn{k}.}
 
-\item{sd}{Standard deviation \eqn{sigma}.}
+\item{mu_A}{Vector \eqn{\mu_A} of expected means on the alternative.}
 
-\item{mu}{Vector \eqn{\mu_A} of expected means on the alternative.}
+\item{sd}{Standard deviation \eqn{sigma}.}
 }
 \value{
 \code{n_ftest} returns an object of type list. The resulting

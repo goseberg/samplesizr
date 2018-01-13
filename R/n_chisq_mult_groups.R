@@ -30,13 +30,15 @@ n_chisq_mult_groups <- function(alpha, power, n.groups, p_A){
 
   p_A_m <- mean(p_A)
   effect <- sum((p_A-p_A_m)^2)
+  i <- 1
   l <- 1
   r <- 0
 
   # Using (6.3)
-  while (l>r){
-    n  <- i * n.groups
-    nc <- (n / n.groups) * (effect / (p_A_m*(1-p_A_m)))^2
+  while (l > r){
+    n     <- i * n.groups
+    p_A_  <-
+    nc    <- ( n / n.groups ) * ( effect / (p_A_m*(1-p_A_m)) )
 
     l <- qchisq(1 - alpha, df = n.groups - 1, ncp = 0)
     r <- qchisq(1 - power, df = n.groups - 1, ncp = nc)

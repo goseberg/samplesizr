@@ -12,7 +12,7 @@
 #' @param alpha    Significance level \eqn{\alpha}.
 #' @param power    Desired Power \eqn{1-\beta}.
 #' @param n.groups Number of Groups \eqn{k}.
-#' @param mu       Vector \eqn{\mu_A} of expected means on the alternative.
+#' @param mu_A     Vector \eqn{\mu_A} of expected means on the alternative.
 #' @param sd       Standard deviation \eqn{sigma}.
 #'
 #' @return \code{n_ftest} returns an object of type list. The resulting
@@ -39,7 +39,7 @@ n_ftest = function(alpha, power, n.groups, mu_A, sd){
   while (l > r){
     n  <- i * n.groups
     if (i == 1) {n <- n + 1}
-    nc <- (n / n.groups) * (effect / sd)^2
+    nc <- (n / n.groups) * (effect / (sd^2))
 
     l <- qf(1 - alpha, df1 = n.groups-1, df2 = n - n.groups, ncp = 0)
     r <- qf(1 - power, df1 = n.groups-1, df2 = n - n.groups, ncp = nc)

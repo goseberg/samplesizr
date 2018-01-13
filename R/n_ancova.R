@@ -6,6 +6,7 @@
 #'   The method is based on the pages 18 - 20 in [1]. The Sample Size
 #'   is calculated using an approximative formula,
 #'   suggested by Frison & Pocock (1999), implemented (4.14) in [1].
+#'
 #' \describe{
 #'   \item{Null Hypothesis:}{\eqn{\mu_Y - \mu_X = 0}}
 #'   \item{Alternative Hypothesis:}{|\mu_Y - \mu_X| \ge \Delta_A}}
@@ -30,13 +31,9 @@
 #'   WARNING: This function is not implemented yet.
 #'
 #' @examples
-#' n_ancova(alpha = .05, power = .90, r = 1, effect = 10, corr = .5, sd = 20)
 #' n_ancova(alpha = .05, power = .90, r = 1, effect = 10, corr = .5, sd = 20)$n
-#' n_ancova(alpha = .05, power = .90, r = 2, effect = 10, sd = 20)$power_out
-#' n_ancova(alpha = .05, power = .90, r = 2, r.strict = FALSE, effect = 10, corr = .5, sd = 20, gs = FALSE)
 #'
 #' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
-#'
 #'  WARNING: Exact power output is going to be implemented in the future.
 
 # I n_ancova
@@ -75,7 +72,6 @@ n_ancova <- function(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TR
   return(results)
 
 }
-
 
 print.n_ancova <- function(x, ...){
 

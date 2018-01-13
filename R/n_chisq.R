@@ -63,7 +63,7 @@ n_chisq <- function(alpha, power, power.exact = TRUE, r, r.strict = TRUE, p_Y, p
     # Use iterative approach
     n.results <- .n_binomial_exact(
                    alpha = alpha,
-                   pow   = power,
+                   power   = power,
                    p_X   = p_X,
                    p_Y   = p_Y,
                    r     = r,

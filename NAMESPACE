@@ -1,5 +1,14 @@
-#exportPattern("^[[:alpha:]]+")
-exportPattern("^[^\\.]")
+export(n_ztest)
+export(n_ttest)
+export(n_ancova)
+export(n_chisq)
+export(n_ftest)
+export(n_chisq_mult_groups)
 
 importFrom("MASS", "fractions")
-importFrom("stats", "dbinom", "pt", "qnorm", "qt")
+importFrom("stats",  "dbinom",
+           "qt", "pt",
+           "qnorm", "pnorm",
+           "qchisq", "pchisq",
+           "qf", "pf"
+           )

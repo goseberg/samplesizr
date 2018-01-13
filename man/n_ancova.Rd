@@ -33,15 +33,15 @@ the G/S correcture like in (4.15) in [1] is used.}
   The resulting power is named \code{power_out}.
   WARNING: This function is not implemented yet.
 }
-\details{
-[1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
-
- WARNING: Exact power output is going to be implemented in the future.
+\description{
+\code{n_ancova} performs the Sample Size calculation for the test on
+  mean difference for two samples with an Analysis of
+  Covariances (ANCOVA).
+  The method is based on the pages 18 - 20 in [1]. The Sample Size
+  is calculated using an approximative formula,
+  suggested by Frison & Pocock (1999), implemented (4.14) in [1].
 }
 \examples{
-n_ancova(alpha = .05, power = .90, r = 1, effect = 10, corr = .5, sd = 20)
 n_ancova(alpha = .05, power = .90, r = 1, effect = 10, corr = .5, sd = 20)$n
-n_ancova(alpha = .05, power = .90, r = 2, effect = 10, sd = 20)$power_out
-n_ancova(alpha = .05, power = .90, r = 2, r.strict = FALSE, effect = 10, corr = .5, sd = 20, gs = FALSE)
 
 }

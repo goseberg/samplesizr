@@ -3,12 +3,17 @@ Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
 Author: Daniel Goseberg
-Maintainer: The package maintainer <goseberg@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Maintainer: The package maintainer <goseberg.d@gmail.com>
+Description: Samplesizr. Based on the book Fallzahlberechnung 
+    in der medizinischen Forschung (2018), written by M. Kieser
+    this macro deploys functions to compute the sample size for
+    clinical trials in different situations. There are functions
+    for comparing groups with normal distributed (z-test, t-test,
+    ANCOVA, f-test) or binary data (Chi-Square-test, Fisher-Boschloo-
+    test).
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Imports: MASS
+Imports: MASS 
 Suggests: testthat
 RoxygenNote: 6.0.1

@@ -12,7 +12,7 @@ context("Test n_ftest")
 case_1 <- c(0, 10, 5)
 case_2 <- c(0, 10, 10)
 cases  <- data.frame(case_1,case_2)
-n_f    <- c(348, 267)
+n_f    <- c(309, 231)
 
 # II TEST LOOP
 
