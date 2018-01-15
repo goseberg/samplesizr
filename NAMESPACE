@@ -5,6 +5,13 @@ export(n_chisq)
 export(n_ftest)
 export(n_chisq_mult_groups)
 
+S3method(print, n_ztest)
+S3method(print, n_ttest)
+S3method(print, n_ancova)
+S3method(print, n_chisq)
+S3method(print, n_ftest)
+S3method(print, n_chisq_mult_groups)
+
 importFrom("MASS", "fractions")
 importFrom("stats",  "dbinom",
            "qt", "pt",
