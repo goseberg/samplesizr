@@ -11,10 +11,6 @@
 #' @param alpha    Significance level \eqn{\alpha}.
 #' @param power    Desired Power \eqn{1-\beta}.
 #' @param r        Quotient of Sample sizes \eqn{r = n_Y / n_X}.
-#' @param r.strict Allocation Handling. Default = TRUE. If set to TRUE,
-#'   the Sample size  per Group is round up to the next combination hitting the
-#'   specified allocation exactly. If set to FALSE, the Sample size per
-#'   Group is round up to the next natural number.
 #' @param effect   Effect \eqn{\Delta_A} used as alternative hypothesis.
 #' @param sd       Standard deviation \eqn{\sigma}.
 #'
@@ -37,14 +33,14 @@
 # allocation is hit according to user's choice.
 # Afterwards the exact power is calculated.
 
-n_ztest = function(alpha, power, r, r.strict=TRUE, effect, sd){
+n_ztest = function(alpha, power, r, effect, sd){
 
   # Formula (4.5a) in [1]
   z_alpha <- qnorm(1-alpha/2)
   n_X     <- ((1+r)/r) * (z_alpha + qnorm(power))^2 * (sd/effect)^2
 
   # Balance group sizes
-  n.results <- .group_balance(n_X = n_X, r = r, r.strict = r.strict)
+  n.results <- .group_balance(n_X = n_X, r = r, r.strict = TRUE)
 
   # Calculate exact power for z-Test
   nc        <- sqrt( (r/(1+r)) * n_X ) * (effect / sd)
@@ -55,7 +51,6 @@ n_ztest = function(alpha, power, r, r.strict=TRUE, effect, sd){
   input_list <- c(alpha    = alpha,
                   power    = power,
                   r        = r,
-                  r.strict = r.strict,
                   effect   = effect,
                   sd       = sd
                 )

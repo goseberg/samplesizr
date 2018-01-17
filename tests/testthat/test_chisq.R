@@ -35,7 +35,7 @@ table_52_r1 <- data.frame(
 n.r2.chisq_approx   <- c(147, 189, 213, 219, 207, 180, 132)
 n.r2.chisq_exact    <- c(141, 186, 207, 219, 207, 177, 129)
 pow.r2.chisq_approx <- c(82.4, 81.1, 80.4, 80.3, 80.3, 81.3, 81.5)
-pow.r2.chisq_exact  <- c(80.3, 80.3, 80.1, 80.3, 80.3, 80.5, 80.6)
+pow.r2.chisq_exact  <- c(80.2, 80.3, 80.1, 80.3, 80.3, 80.5, 80.5)
 
 table_52_r2 <- data.frame(
               p_X = p_X_vector,

@@ -40,7 +40,6 @@ for (i_effect in 1:length(effect_vector)) {
         alpha      = alpha,
         power      = power,
         r        = r,
-        r.strict = TRUE,
         effect   = effect,
         sd      = sd
     )$n
