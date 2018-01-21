@@ -4,18 +4,18 @@
 \alias{n_ftest}
 \title{Sample Size Calculation for the f Test comparing means of \eqn{k > 2} groups}
 \usage{
-n_ftest(alpha, power, n.groups, mu_A, sd)
+n_ftest(mu_A, sd, n.groups, alpha, power)
 }
 \arguments{
-\item{alpha}{Significance level \eqn{\alpha}.}
-
-\item{power}{Desired Power \eqn{1-\beta}.}
-
-\item{n.groups}{Number of Groups \eqn{k}.}
-
 \item{mu_A}{Vector \eqn{\mu_A} of expected means on the alternative.}
 
 \item{sd}{Standard deviation \eqn{sigma}.}
+
+\item{n.groups}{Number of Groups \eqn{k}.}
+
+\item{alpha}{Significance level \eqn{\alpha}.}
+
+\item{power}{Desired Power \eqn{1-\beta}.}
 }
 \value{
 \code{n_ftest} returns an object of type list. The resulting
@@ -36,6 +36,6 @@ n_ftest(alpha, power, n.groups, mu_A, sd)
 [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 }
 \examples{
-n_ftest(alpha = .025, power = .8, n.groups = 3, mu_A = c(1, 2, 3), sd = 20)
+n_ftest(mu_A = c(1, 2, 3), sd = 20, n.groups = 3, alpha = .025, power = .8)
 
 }

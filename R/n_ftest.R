@@ -9,51 +9,64 @@
 #'   \item{Alternative Hypothesis:}{There are \eqn{i,j} with \eqn{\mu_i \ne \mu_j}}
 #' }
 #'
-#' @param alpha    Significance level \eqn{\alpha}.
-#' @param power    Desired Power \eqn{1-\beta}.
-#' @param n.groups Number of Groups \eqn{k}.
 #' @param mu_A     Vector \eqn{\mu_A} of expected means on the alternative.
 #' @param sd       Standard deviation \eqn{sigma}.
+#' @param n.groups Number of Groups \eqn{k}.
+#' @param alpha    Significance level \eqn{\alpha}.
+#' @param power    Desired Power \eqn{1-\beta}.
 #'
 #' @return \code{n_ftest} returns an object of type list. The resulting
 #'   Sample Sizes are located in entrys named \code{n_per_group}, \code{n}.
 #'   The resulting power is named \code{power_out}.
 #'
 #' @examples
-#' n_ftest(alpha = .025, power = .8, n.groups = 3, mu_A = c(1, 2, 3), sd = 20)
+#' n_ftest(mu_A = c(1, 2, 3), sd = 20, n.groups = 3, alpha = .025, power = .8)
 #'
 #' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 
 # I n_ftest
 
-n_ftest = function(alpha, power, n.groups, mu_A, sd){
+n_ftest = function(mu_A, sd, n.groups, alpha, power){
+
+  .stopcheck(
+    var_1  = mu_A,
+    var_2  = sd,
+    var_3  = n.groups,
+    alpha  = alpha,
+    power  = power,
+    two.groups = FALSE
+  )
 
   # Initialize start parameters
-  l <- 1
-  r <- 0
-  i <- 1
+  n_per_group <- 2
 
   mu_A_m <- mean(mu_A)
   effect <- sum( (mu_A - mu_A_m)^2 )
 
-  while (l > r){
-    n  <- i * n.groups
-    if (i == 1) {n <- n + 1}
-    nc <- (n / n.groups) * (effect / (sd^2))
+  while (power_ftest(
+    mu_A        = mu_A,
+    sd          = sd,
+    n.groups    = n.groups,
+    n_per_group = n_per_group,
+    alpha       = alpha
+  ) < power
+  ){
+    n_per_group  <- n_per_group + 1
+  }
 
-    l <- qf(1 - alpha, df1 = n.groups-1, df2 = n - n.groups, ncp = 0)
-    r <- qf(1 - power, df1 = n.groups-1, df2 = n - n.groups, ncp = nc)
-    p <- 1 - pf(l , df1 = n.groups-1, df2 = n - n.groups, ncp = nc)
+  n <- n_per_group * n.groups
 
-    i<-i+1
-   }
-
-  if (n == n.groups + 1) {stop("Resulting group size too small. Check input.")}
-
-  n.results <- list(n_per_group = (n / n.groups), n = n)
+  n.results <- list(n_per_group = n_per_group, n = n)
 
   # Calculate exact power for f-Test
-  power_out <- list(power_out = p)
+  power_out <- power_ftest(
+    mu_A        = mu_A,
+    sd          = sd,
+    n.groups    = n.groups,
+    n_per_group = n_per_group,
+    alpha       = alpha
+  )
+  power_out <- list(power_out = power_out)
 
   # Organize Output for print function
   input_list <- list(alpha    = alpha,
@@ -70,7 +83,42 @@ n_ftest = function(alpha, power, n.groups, mu_A, sd){
 
 }
 
-# II Print function
+# II Power function
+
+#' Power Calculation for the f Test comparing means of \eqn{k > 2} groups
+#'
+#' \code{power_ftest} performs the power calculation for the f-test
+#'   comparing means of \eqn{k > 2} independent samples.
+#'   The method used here is based on the page 29 in [1].
+#'
+#' @param mu_A     Vector \eqn{\mu_A} of expected means on the alternative.
+#' @param sd       Standard deviation \eqn{sigma}.
+#' @param n.groups Number of Groups \eqn{k}.
+#' @param n_per_group   Sample size per group.
+#' @param alpha    Significance level \eqn{\alpha}.
+#'
+#' @return \code{n_ftest} returns the power.
+#'
+#' @examples
+#' power_ftest(mu_A = c(1, 2, 3), sd = 20, n.groups = 3, n_per_group = 70, alpha = .025)
+#'
+#' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
+
+
+power_ftest <- function(mu_A, sd, n.groups, n_per_group, alpha) {
+
+    mu_A_m  <- mean(mu_A)
+    effect  <- sqrt( sum( (mu_A - mu_A_m)^2 ) )
+    n       <- n_per_group * n.groups
+    nc      <- (n_per_group) * (effect / sd)^2
+    f_alpha <-  qf(1 - alpha, df1 = n.groups-1, df2 = n - n.groups, ncp = 0)
+    power   <- 1 - pf(f_alpha, df1 = n.groups-1, df2 = n - n.groups, ncp = nc)
+
+    return(power)
+
+}
+
+# III Print function
 
 print.n_ftest <- function(x, ...){
 
@@ -79,16 +127,16 @@ print.n_ftest <- function(x, ...){
 
   cat(sprintf(
     "Input Parameters \n
-    Significance level : %.2f
-    Desired Power : %.2f %%
-    Number of groups : %.0f
-    Expectation on Alternative : %s
-    Standard deviation : %.2f
+Significance level : %.3f
+Desired Power : %.2f %%
+Number of groups : %i
+Expectation on Alternative : %s
+Standard deviation : %.2f
 
-    Results of sample size calculation \n
-    n per group : %.0f
-    n total : %.0f
-    Resulting Power : %.2f %%",
+Results of sample size calculation \n
+n per group : %i
+n total : %i
+Resulting Power : %.5f %%",
 
     x$alpha,
     x$power*100,

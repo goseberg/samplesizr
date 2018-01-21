@@ -9,19 +9,15 @@
 #'
 #' \describe{
 #'   \item{Null Hypothesis:}{\eqn{\mu_Y - \mu_X = 0}}
-#'   \item{Alternative Hypothesis:}{|\mu_Y - \mu_X| \ge \Delta_A}}
+#'   \item{Alternative Hypothesis:}{\eqn{|\mu_Y - \mu_X| \ge \Delta_A}}
 #' }
 #'
-#' @param alpha    Significance level \eqn{\alpha}.
-#' @param power    Desired Power \eqn{1-\beta}.
-#' @param r        Quotient of Sample sizes \eqn{r = n_Y / n_X}.
-#' @param r.strict Allocation Handling. Default = TRUE. If set to TRUE,
-#'   the Sample size  per Group is round up to the next combination hitting the
-#'   specified allocation exactly. If set to FALSE, the Sample size per
-#'   Group is round up to the next natural number.
 #' @param effect   Effect \eqn{\Delta_A} used as alternative hypothesis.
 #' @param corr     Correlation  \eqn{rho} to Covariate.
 #' @param sd       Standard deviation \eqn{\sigma}.
+#' @param alpha    Significance level \eqn{\alpha}.
+#' @param power    Desired Power \eqn{1-\beta}.
+#' @param r        Quotient of Sample sizes \eqn{r = n_Y / n_X}.
 #' @param gs       Guenther/Schouten correcture. Default = TRUE. If set to TRUE,
 #'                 the G/S correcture like in (4.15) in [1] is used.
 #'
@@ -31,15 +27,25 @@
 #'   WARNING: This function is not implemented yet.
 #'
 #' @examples
-#' n_ancova(alpha = .05, power = .90, r = 1, effect = 10, corr = .5, sd = 20)$n
+#' n_ancova(effect = 10, corr = .5, sd = 20, alpha = .05, power = .90, r = 1)
 #'
 #' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
-#'  WARNING: Exact power output is going to be implemented in the future.
+#' Exact power output is going to be implemented in the future.
 
-# I n_ancova
-#
+n_ancova <- function(effect, corr, sd, alpha, power, r = 1, gs = TRUE){
 
-n_ancova <- function(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TRUE){
+  .stopcheck(
+    var_1 = effect,
+    var_2 = sd,
+    var_3 = r,
+    alpha = alpha,
+    power = power
+  )
+
+  #4 th input variable check
+  if ( corr > 1 || corr < 0 || (is.numeric(corr) == FALSE) ){
+    stop("corr has to be a numeric between 0 an 1.")
+  }
 
   z_alpha <- qnorm(1 - alpha/2)
   n_X <- ((1+r)/r) * (z_alpha+qnorm(power))^2 * (1-corr^2) * (sd/effect)^2
@@ -49,17 +55,17 @@ n_ancova <- function(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TR
   }
 
   # Balance group sizes
-  n.results <- .group_balance(n_X = n_X, r = r, r.strict = r.strict)
+  n.results <- .group_balance(n_X = n_X, r = r, r.strict = TRUE)
 
   # Calculate exact power for ANCOVA
-  power_out <- "WARNING. See Documentation."
-  power_out <- list(power_out = power_out)
+  #power_out <- warning("No exact power calculation for ANCOVA implemented.")
+  #power_out <- list(power_out = power_out)
+  power_out <- list(power_out = 999)
 
   # Organize Output for print function
   input_list <- c(alpha    = alpha,
                   power    = power,
                   r        = r,
-                  r.strict = r.strict,
                   effect   = effect,
                   corr     = corr,
                   sd       = sd,
@@ -75,24 +81,25 @@ n_ancova <- function(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TR
 
 print.n_ancova <- function(x, ...){
 
-  cat("Sample size calculation for ANCOVA comparing two \n")
-  cat("samples (two-sided alternative).\n")
-  if(x$gs == TRUE) {cat("Guenther/Schouten correcture performed.\n\n")}
-  else {cat("No Guenther/Schouten correcture performed.\n\n")}
+  cat("Sample size calculation for ANCOVA comparing two
+samples (two-sided alternative).\n"
+  )
+  if(x$gs == TRUE) {cat("Guenther/Schouten correcture performed.")}
+  else {cat("No Guenther/Schouten correcture performed.")}
 
   cat(sprintf(
     "Input Parameters \n
-Significance level : %.2f
+Significance level : %.3f
 Desired Power : %.2f %%
 Effect size : %.2f
 Correlation : %.2f
 Standard deviation : %.2f
 Allocation : %.2f \n
 Results of sample size calculation \n
-n Group X : %.0f
-n Group Y : %.0f
-n Total : %.0f
-Resulting Power : %s" ,
+n Group X : %i
+n Group Y : %i
+n Total : %i
+Resulting Power : %5f." ,
 
     x$alpha,
     x$power*100,
@@ -106,6 +113,5 @@ Resulting Power : %s" ,
     x$power_out
   )
   )
-
 }
 

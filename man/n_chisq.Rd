@@ -4,27 +4,22 @@
 \alias{n_chisq}
 \title{Sample Size Calculation for the Chi-Square Test}
 \usage{
-n_chisq(alpha, power, power.exact = TRUE, r, r.strict = TRUE, p_Y, p_X)
+n_chisq(p_Y, p_X, alpha, power, r, power.exact = TRUE)
 }
 \arguments{
+\item{p_Y}{Event rate of Group Y on the alternative.}
+
+\item{p_X}{Event rate of Group X on the alternative.}
+
 \item{alpha}{Significance level \eqn{\alpha}.}
 
 \item{power}{Desired Power \eqn{1-\beta}.}
 
+\item{r}{Quotient of Sample sizes \eqn{r = n_Y / n_X}.}
+
 \item{power.exact}{Default = TRUE. If set to FALSE an approximative formula
 is used for calculating the sample size, given by (5.7a) in [1]. On TRUE
 the iterative approach is used.}
-
-\item{r}{Quotient of Sample sizes \eqn{r = n_Y / n_X}.}
-
-\item{r.strict}{Allocation Handling. Default = TRUE. If set to TRUE,
-the Sample size  per Group is round up to the next combination hitting the
-specified allocation exactly. If set to FALSE, the Sample size per
-Group is round up to the next natural number.}
-
-\item{p_Y}{Event rate of Group Y on the alternative.}
-
-\item{p_X}{Event rate of Group X on the alternative.}
 }
 \value{
 \code{n_chisq} returns an object of type list. The resulting
@@ -50,8 +45,8 @@ Group is round up to the next natural number.}
 [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 }
 \examples{
-n_chisq(alpha =.05, power=.8, power.exact=TRUE, r=2, p_Y = .5, p_X = .3)
-n_chisq(alpha =.05, power=.8, power.exact=TRUE, r=2, p_Y = .5, p_X = .3)$n
-n_chisq(alpha =.05, power=.8, power.exact=FALSE, r=2, r.strict=FALSE, p_Y = .5, p_X = .3)
+n_chisq(p_Y = .5, p_X = .3, alpha = .05, power = .8, r = 2)
+n_chisq(p_Y = .5, p_X = .3, alpha = .05, power = .8, r = 2)$n
+n_chisq(p_Y = .5, p_X = .3, alpha = .05, power = .8, r = 2, power.exact = FALSE)
 
 }

@@ -68,7 +68,6 @@ for (r in 1:2) {
       power      = power,
       power.exact= TRUE,
       r        = r,
-      r.strict = TRUE,
       p_X      = p_X_vector[i_p_X],
       p_Y      = p_Y_vector[i_p_X]
     )
@@ -78,7 +77,6 @@ for (r in 1:2) {
       power      = power,
       power.exact= FALSE,
       r        = r,
-      r.strict = TRUE,
       p_X      = p_X_vector[i_p_X],
       p_Y      = p_Y_vector[i_p_X]
     )
@@ -140,7 +138,6 @@ for (i_r in 1:length(r_vector)) {
     power      = power,
     power.exact= TRUE,
     r        = r,
-    r.strict = TRUE,
     p_X      = p_X,
     p_Y      = p_Y
   )

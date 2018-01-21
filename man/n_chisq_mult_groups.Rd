@@ -5,16 +5,16 @@
 \title{Sample Size Calculation for the Chi-Square Test comparing rates of
 \eqn{k > 2} groups}
 \usage{
-n_chisq_mult_groups(alpha, power, n.groups, p_A)
+n_chisq_mult_groups(p_A, n.groups, alpha, power)
 }
 \arguments{
-\item{alpha}{Significance level \eqn{\alpha}.}
-
-\item{power}{Desired Power \eqn{1-\beta}.}
+\item{p_A}{Vector \eqn{\p_A} of expected rates on the alternative.}
 
 \item{n.groups}{Number of Groups \eqn{k}.}
 
-\item{p_A}{Vector \eqn{\p_A} of expected rates on the alternative.}
+\item{alpha}{Significance level \eqn{\alpha}.}
+
+\item{power}{Desired Power \eqn{1-\beta}.}
 }
 \value{
 \code{n_chisq_mult_groups} returns an object of type list. The resulting
@@ -35,6 +35,6 @@ n_chisq_mult_groups(alpha, power, n.groups, p_A)
 [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 }
 \examples{
-n_chisq_mult_groups(alpha = .05, power = .8, n.groups = 3, p_A = c(.3, .5, .4))
+n_chisq_mult_groups(p_A = c(.3, .5, .4), n.groups = 3, alpha = .05, power = .8)
 
 }

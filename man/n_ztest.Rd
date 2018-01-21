@@ -4,23 +4,18 @@
 \alias{n_ztest}
 \title{Sample Size Calculation for the two-sided z-Test}
 \usage{
-n_ztest(alpha, power, r, r.strict = TRUE, effect, sd)
+n_ztest(effect, sd, alpha, power, r)
 }
 \arguments{
+\item{effect}{Effect \eqn{\Delta_A} used as alternative hypothesis.}
+
+\item{sd}{Standard deviation \eqn{\sigma}.}
+
 \item{alpha}{Significance level \eqn{\alpha}.}
 
 \item{power}{Desired Power \eqn{1-\beta}.}
 
-\item{r}{Quotient of Sample sizes \eqn{r = n_Y / n_X}.}
-
-\item{r.strict}{Allocation Handling. Default = TRUE. If set to TRUE,
-the Sample size  per Group is round up to the next combination hitting the
-specified allocation exactly. If set to FALSE, the Sample size per
-Group is round up to the next natural number.}
-
-\item{effect}{Effect \eqn{\Delta_A} used as alternative hypothesis.}
-
-\item{sd}{Standard deviation \eqn{\sigma}.}
+\item{r}{Quotient of Group sizes \eqn{r = n_Y / n_X}.}
 }
 \value{
 \code{n_ztest} returns an object of type list. The resulting
@@ -40,9 +35,8 @@ Group is round up to the next natural number.}
 [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 }
 \examples{
-n_ztest(alpha = .05, power = .90, r = 2, effect = .5, sd = 1)
-n_ztest(alpha = .05, power = .90, r = 2, effect = .5, sd = 1)$n
-n_ztest(alpha = .05, power = .90, r = 2, effect = .5, sd = 1)$power_out
-n_ztest(alpha = .05, power = .90, r = 2, r.strict = FALSE, effect = .5, sd = 1)
+n_ztest(effect = .5, sd = 1, alpha = .05, power = .90, r = 2)
+n_ztest(effect = .5, sd = 1, alpha = .05, power = .90, r = 2)$n
+n_ztest(effect = .5, sd = 1, alpha = .05, power = .90, r = 2)$power_out
 
 }

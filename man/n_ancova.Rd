@@ -4,25 +4,20 @@
 \alias{n_ancova}
 \title{Sample Size Calculation for the Analysis of Covariances (ANCOVA)}
 \usage{
-n_ancova(alpha, power, r, r.strict = TRUE, effect, corr, sd, gs = TRUE)
+n_ancova(effect, corr, sd, alpha, power, r = 1, gs = TRUE)
 }
 \arguments{
-\item{alpha}{Significance level \eqn{\alpha}.}
-
-\item{power}{Desired Power \eqn{1-\beta}.}
-
-\item{r}{Quotient of Sample sizes \eqn{r = n_Y / n_X}.}
-
-\item{r.strict}{Allocation Handling. Default = TRUE. If set to TRUE,
-the Sample size  per Group is round up to the next combination hitting the
-specified allocation exactly. If set to FALSE, the Sample size per
-Group is round up to the next natural number.}
-
 \item{effect}{Effect \eqn{\Delta_A} used as alternative hypothesis.}
 
 \item{corr}{Correlation  \eqn{rho} to Covariate.}
 
 \item{sd}{Standard deviation \eqn{\sigma}.}
+
+\item{alpha}{Significance level \eqn{\alpha}.}
+
+\item{power}{Desired Power \eqn{1-\beta}.}
+
+\item{r}{Quotient of Sample sizes \eqn{r = n_Y / n_X}.}
 
 \item{gs}{Guenther/Schouten correcture. Default = TRUE. If set to TRUE,
 the G/S correcture like in (4.15) in [1] is used.}
@@ -41,7 +36,16 @@ the G/S correcture like in (4.15) in [1] is used.}
   is calculated using an approximative formula,
   suggested by Frison & Pocock (1999), implemented (4.14) in [1].
 }
+\details{
+\describe{
+  \item{Null Hypothesis:}{\eqn{\mu_Y - \mu_X = 0}}
+  \item{Alternative Hypothesis:}{\eqn{|\mu_Y - \mu_X| \ge \Delta_A}}
+}
+
+[1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
+Exact power output is going to be implemented in the future.
+}
 \examples{
-n_ancova(alpha = .05, power = .90, r = 1, effect = 10, corr = .5, sd = 20)$n
+n_ancova(effect = 10, corr = .5, sd = 20, alpha = .05, power = .90, r = 1)
 
 }

@@ -44,7 +44,6 @@ for (i_effect in 1:length(effect_vector)) {
         alpha    = alpha,
         power    = power,
         r        = r,
-        r.strict = TRUE,
         effect   = effect,
         sd      = sd
     )$n
@@ -69,17 +68,16 @@ for (i_effect in 1:length(effect_vector)) {
 
 for (i_r in 1:length(r_vector)) {
 
-  alpha    <- .05
-  power    <- .90
+  alpha  <- .05
+  power  <- .90
   effect <- .5
-  sd    <- 1
+  sd     <- 1
   r      <- r_vector[i_r]
 
   val_f <- n_ttest(
     alpha      = alpha,
     power      = power,
     r        = r,
-    r.strict = TRUE,
     effect   = effect,
     sd      = sd
   )$n

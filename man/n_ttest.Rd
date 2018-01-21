@@ -4,23 +4,18 @@
 \alias{n_ttest}
 \title{Sample Size Calculation for the two-sided t-Test}
 \usage{
-n_ttest(alpha, power, r, r.strict = TRUE, effect, sd)
+n_ttest(effect, sd, alpha, power, r = 1)
 }
 \arguments{
+\item{effect}{Effect \eqn{\Delta_A} used as alternative hypothesis.}
+
+\item{sd}{Standard deviation \eqn{\sigma}.}
+
 \item{alpha}{Significance level \eqn{\alpha}.}
 
 \item{power}{Desired Power \eqn{1-\beta}.}
 
-\item{r}{Quotient of Sample sizes \eqn{r = n_Y / n_X}.}
-
-\item{r.strict}{Allocation Handling. Default = TRUE. If set to TRUE,
-the Sample size  per Group is round up to the next combination hitting the
-specified allocation exactly. If set to FALSE, the Sample size per
-Group is round up to the next natural number.}
-
-\item{effect}{Effect \eqn{\Delta_A} used as alternative hypothesis.}
-
-\item{sd}{Standard deviation \eqn{\sigma}.}
+\item{r}{Default = 1. Quotient of Group sizes \eqn{r = n_Y / n_X}.}
 }
 \value{
 \code{n_ttest} returns an object of type list. The resulting
@@ -40,9 +35,8 @@ Group is round up to the next natural number.}
 [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 }
 \examples{
-n_ttest(alpha = .05, power = .90, r = 1, effect = 10, sd = 20)
-n_ttest(alpha = .05, power = .90, r = 2, effect = 10, sd = 20)$n
-n_ttest(alpha = .05, power = .90, r = 2, effect = 10, sd = 20)$power_out
-n_ttest(alpha = .05, power = .90, r = 2, r.strict = FALSE, effect = 10, sd = 20)
+n_ttest(effect = 10, sd = 20, alpha = .05, power = .90)
+n_ttest(effect = 10, sd = 20, alpha = .05, power = .90, r = 2)$n
+n_ttest(effect = 10, sd = 20, alpha = .05, power = .90, r = 2)$power_out
 
 }
