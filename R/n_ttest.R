@@ -9,7 +9,8 @@
 #' }
 #'
 #' @param effect   Effect \eqn{\Delta_A} used as alternative hypothesis.
-#' @param sd       Standard deviation \eqn{\sigma}.
+#' @param sd       Standard deviation \eqn{\sigma} of the Data on the
+#' alternative hypothesis.
 #' @param alpha    Significance level \eqn{\alpha}.
 #' @param power    Desired Power \eqn{1-\beta}.
 #' @param r        Default = 1. Quotient of Group sizes \eqn{r = n_Y / n_X}.
