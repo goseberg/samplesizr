@@ -43,7 +43,7 @@
         stop("p_X must be between 0 and 1.")
       }
     } else { # z test t test scenario
-      if (var_1 <= 0){ stop("effect must be a numeric greater than 0.") }
+      #if (var_1 <= 0){ stop("effect must be a numeric greater than 0.") }
       if (var_2 <= 0){ stop("sd must be a numeric greater than 0.") }
     }
 

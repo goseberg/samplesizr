@@ -32,7 +32,8 @@
 #' n_chisq(p_Y = .5, p_X = .3, alpha = .05, power = .8, r = 2)$n
 #' n_chisq(p_Y = .5, p_X = .3, alpha = .05, power = .8, r = 2, power.exact = FALSE)
 #'
-#' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
+#' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018],
+#' 1th Edition
 
 # I n_chisq
 
@@ -183,13 +184,26 @@ power_binomial <-function(p_Y, p_X, n_Y, n_X, alpha, power.exact)
 # III n to exact power Function
 
 .n_binomial_exact<-function(p_X, p_Y, alpha, power, r){
+  #find start value
+  #
+  pow_st <- max(0, power-.15)
+  n_st <- n_chisq(
+    p_Y = p_Y,
+    p_X = p_X,
+    alpha = alpha,
+    power = pow_st,
+    r,
+    power.exact = FALSE
+  )
+
   num <- .get_fraction(r)$numerator
   den <- .get_fraction(r)$denominator
   if ( (r %% 1) == 0 ) {den <- 1}
-  i <- 1
+
+  i <- n_st$n_X / den
   p <- 0
 
-  while (p<power){
+  while (p < power){
    .n_x <- den * i
    .n_y <- num * i
    i    <- i + 1

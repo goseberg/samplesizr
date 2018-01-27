@@ -112,6 +112,8 @@ n_ttest<-function(effect, sd, alpha, power, r = 1){
 
 power_ttest <- function(effect, sd, n_X, alpha, r = 1){
 
+  effect <- abs(effect)
+
   nc  <- sqrt( (r/(1+r)) * n_X ) * (effect / sd)
   q_0 <- qt(p = 1 - alpha/2, df = (1 + r) * n_X - 2, ncp = 0)
   h   <- pt(q = q_0, df = (1+r) * n_X - 2, ncp = nc)

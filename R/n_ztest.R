@@ -96,7 +96,7 @@ n_ztest = function(effect, sd, alpha, power, r){
 
 power_ztest <- function(effect, sd, n_X, alpha, r = 1){
   z_alpha <- qnorm(1 - alpha/2)
-
+  effect <- abs(effect)
   nc    <- sqrt( (r/(1+r)) * n_X ) * (effect / sd)
   power <- 1 - pnorm(z_alpha, mean = nc, sd = 1)
   return(power)
