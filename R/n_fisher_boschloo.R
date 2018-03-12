@@ -670,7 +670,7 @@ power_fisher_boschloo <- function(p_Y, p_X, n_Y, n_X, alpha,
   phi        <- .CritfctXY(n_Y, n_X, CritC)
   kx_y       <- .KX_Y(n_Y, n_X, phi)
   pow        <- .POW(n_Y, n_X, kx_y, p_Y, p_X)
-
+# retrn power
   return(pow)
 }
 
