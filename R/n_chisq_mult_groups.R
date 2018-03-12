@@ -120,7 +120,7 @@ print.n_chisq_mult_groups <- function(x, ...){
 Significance level : %.3f
 Desired power : %.2f %%
 Number of groups : %i
-Expectation on Alternative : %s
+Expectation on alternative : %s
 
 Results of sample size calculation \n
 n per group : %i

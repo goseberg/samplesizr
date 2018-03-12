@@ -232,8 +232,8 @@ print.n_chisq <- function(x, ...){
 Significance level (two-sided): %.3f
 Desired power : %.2f %%
 Allocation : %.2f
-Rate group Y : %.2f
-Rate group X : %.2f
+Rate group Y : %.3f
+Rate group X : %.3f
 
 Results of sample size calculation \n
 n group X : %i

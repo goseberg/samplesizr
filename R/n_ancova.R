@@ -1,4 +1,4 @@
-#' Sample Size Calculation for the Analysis of Covariances (ANCOVA)
+#' Sample size calculation for the Analysis of Covariances (ANCOVA)
 #'
 #' \code{n_ancova} performs the Sample size calculation for the test on
 #'   mean difference for two samples with respect to normal data using the
@@ -22,9 +22,7 @@
 #'                 the G/S correcture like in (4.15) in [1] is used.
 #'
 #' @return \code{n_ancova} returns an object of type list. The resulting
-#'   Sample Sizes are located in entrys named \code{n_X}, \code{n_Y}, \code{n}.
-#'   The resulting power is named \code{power_out}.
-#'   WARNING: This function is not implemented yet.
+#'   Sample sizes are located in entrys named \code{n_X}, \code{n_Y}, \code{n}.
 #'
 #' @examples
 #' n_ancova(effect = 10, corr = .5, sd = 20, alpha = .05, power = .90, r = 1)
@@ -59,8 +57,7 @@ n_ancova <- function(effect, corr, sd, alpha, power, r = 1, gs = TRUE){
 
   # Calculate exact power for ANCOVA
   #power_out <- warning("No exact power calculation for ANCOVA implemented.")
-  #power_out <- list(power_out = power_out)
-  power_out <- list(power_out = 999)
+
 
   # Organize Output for print function
   input_list <- c(alpha    = alpha,
@@ -72,7 +69,7 @@ n_ancova <- function(effect, corr, sd, alpha, power, r = 1, gs = TRUE){
                   gs       = gs
   )
 
-  results         <- append(append(input_list, n.results), power_out)
+  results         <- append(input_list, n.results)
   class(results)  <- c("n_ancova", class(results))
 
   return(results)
@@ -98,8 +95,7 @@ Allocation : %.2f \n
 Results of sample size calculation \n
 n group X : %i
 n group Y : %i
-n total : %i
-Actual power : %5f." ,
+n total : %i" ,
 
     x$alpha,
     x$power*100,
@@ -109,8 +105,7 @@ Actual power : %5f." ,
     x$r,
     x$n_X,
     x$n_Y,
-    x$n,
-    x$power_out
+    x$n
   )
   )
 }

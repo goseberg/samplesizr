@@ -1,6 +1,6 @@
-#' Sample Size Calculation for the f Test comparing means of \eqn{k > 2} groups
+#' Sample size calculation for the F Test comparing means of \eqn{k > 2} groups
 #'
-#' \code{n_ftest} performs the Sample Size calculation for  the F-test
+#' \code{n_ftest} performs the Sample Size calculation for  the F test
 #'   comparing means of \eqn{k > 2} independent samples.
 #'   The method used here is based on the page 29 in [1].
 #'   The Sample Size is calculated using an iterative approach.

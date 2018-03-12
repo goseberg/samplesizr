@@ -620,7 +620,8 @@ n_fisher_boschloo <- function(p_Y, p_X, alpha, power, r, exact = TRUE, SW = .000
    exact = exact,
    r   = r,
    p_Y = p_Y,
-   p_X = p_X
+   p_X = p_X,
+   SW = SW
   )
 
   results         <- c(input_list, n.results)
@@ -683,26 +684,28 @@ print.n_fisher_boschloo <- function(x, ...){
 
   cat(sprintf(
     "Input Parameters \n
-    Significance level : %.3f
-    Desired power : %.2f %%
-    Allocation : %.2f
-    Rate Group Y : %.2f
-    Rate Group X : %.2f
+Significance level : %.3f
+Desired power : %.2f %%
+Allocation : %.2f
+Rate group Y : %.3f
+Rate group X : %.3f
+Step width : %.4f
 
-    Results of sample size calculation \n
-    n Group X : %i
-    n Group Y : %i
-    n Total : %i
-    Actual power : %.5f %%"
-    ,
+Results of sample size calculation \n
+n group X : %i
+n group Y : %i
+n total : %i
+Actual power : %.5f %%"
+,
 
     x$alpha,
     x$power*100,
     x$r,
     x$p_Y,
     x$p_X,
-    x$n_X,
+    x$SW,
     x$n_Y,
+    x$n_X,
     x$n,
     x$power_out*100
   )
