@@ -126,7 +126,7 @@ power_ttest <- function(effect, sd, n_X, alpha, r = 1){
 # III Print Function
 print.n_ttest <- function(x, ...){
 
-  cat("Sample size calculation for Student's t-test comparing two independent \n")
+  cat("Sample size calculation for Student's t test comparing two independent \n")
   cat("samples with respect to normal data (two-sided alternative).\n\n")
   cat(sprintf(
 "Input Parameters \n

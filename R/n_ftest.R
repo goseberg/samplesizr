@@ -136,7 +136,7 @@ Standard deviation : %.2f
 Results of sample size calculation \n
 n per group : %i
 n total : %i
-Resulting power : %.5f %%",
+Actual power : %.5f %%",
 
     x$alpha,
     x$power*100,
