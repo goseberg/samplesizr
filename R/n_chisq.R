@@ -116,7 +116,7 @@ n_chisq <- function(p_Y, p_X, alpha, power, r, power.exact = TRUE) {
 #' Power Calculation for the Chi-Square Test
 #'
 #' \code{power_chisq} performs the power calculation for two
-#'   independent samples with binary data using the absolute rate
+#'   independent samples with respect to binary data using the absolute rate
 #'   difference quantifying the effect of an intervention.
 #'   The method used here is based on the pages 21 - 26 in [1].
 #'
@@ -225,21 +225,21 @@ power_binomial <-function(p_Y, p_X, n_Y, n_X, alpha, power.exact)
 print.n_chisq <- function(x, ...){
 
   cat("Sample size calculation for the Chi-Square test for two independent\n")
-  cat("samples with binary data using the absolute rate difference.\n\n ")
+  cat("samples with respect to binary data using the absolute rate difference.\n\n ")
 
   cat(sprintf(
     "Input Parameters \n
-Significance level : %.3f
-Desired Power : %.2f %%
+Significance level (two-sided): %.3f
+Desired power : %.2f %%
 Allocation : %.2f
-Rate Group Y : %.2f
-Rate Group X : %.2f
+Rate group Y : %.2f
+Rate group X : %.2f
 
 Results of sample size calculation \n
-n Group X : %i
-n Group Y : %i
-n Total : %i
-Resulting Power : %.5f %%"
+n group X : %i
+n group Y : %i
+n total : %i
+Actual power : %.5f %%"
     ,
 
     x$alpha,

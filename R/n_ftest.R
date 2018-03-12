@@ -1,6 +1,6 @@
 #' Sample Size Calculation for the f Test comparing means of \eqn{k > 2} groups
 #'
-#' \code{n_ftest} performs the Sample Size calculation for  the f-test
+#' \code{n_ftest} performs the Sample Size calculation for  the F-test
 #'   comparing means of \eqn{k > 2} independent samples.
 #'   The method used here is based on the page 29 in [1].
 #'   The Sample Size is calculated using an iterative approach.
@@ -85,7 +85,7 @@ n_ftest = function(mu_A, sd, n.groups, alpha, power){
 
 # II Power function
 
-#' Power Calculation for the f Test comparing means of \eqn{k > 2} groups
+#' Power Calculation for the F Test comparing means of \eqn{k > 2} groups
 #'
 #' \code{power_ftest} performs the power calculation for the f-test
 #'   comparing means of \eqn{k > 2} independent samples.
@@ -122,21 +122,21 @@ power_ftest <- function(mu_A, sd, n.groups, n_per_group, alpha) {
 
 print.n_ftest <- function(x, ...){
 
-  cat("Sample size calculation for the f-test on mean difference for\n")
-  cat("more than two groups.n\n ")
+  cat("Sample size calculation for the F-test comparing\n")
+  cat("more than two independent groups with respect to normal data.\n ")
 
   cat(sprintf(
     "Input Parameters \n
 Significance level : %.3f
-Desired Power : %.2f %%
+Desired power : %.2f %%
 Number of groups : %i
-Expectation on Alternative : %s
+Means of the groups : %s
 Standard deviation : %.2f
 
 Results of sample size calculation \n
 n per group : %i
 n total : %i
-Resulting Power : %.5f %%",
+Resulting power : %.5f %%",
 
     x$alpha,
     x$power*100,

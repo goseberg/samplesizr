@@ -6,6 +6,7 @@ export(n_ancova)
 #export(power_ancova)
 export(n_chisq)
 export(power_binomial)
+export(n_fisher_boschloo)
 export(n_ftest)
 export(power_ftest)
 export(n_chisq_mult_groups)
@@ -15,11 +16,14 @@ S3method(print, n_ztest)
 S3method(print, n_ttest)
 S3method(print, n_ancova)
 S3method(print, n_chisq)
+S3method(print, n_fisher_boschloo)
 S3method(print, n_ftest)
 S3method(print, n_chisq_mult_groups)
 
 importFrom("MASS", "fractions")
-importFrom("stats",  "dbinom",
+importFrom("BiasedUrn", "pFNCHypergeo")
+importFrom("stats",
+           "dbinom", "pbinom",
            "qt", "pt",
            "qnorm", "pnorm",
            "qchisq", "pchisq",

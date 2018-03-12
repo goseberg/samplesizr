@@ -1,12 +1,12 @@
 Package: samplesizr
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Sample-size calculation made simple
+Version: 1.0.0
 Author: Daniel Goseberg
-Maintainer: The package maintainer <goseberg.d@gmail.com>
-Description: Samplesizr. Based on the book Fallzahlberechnung 
-    in der medizinischen Forschung (2018), written by M. Kieser
-    this macro deploys functions to compute the sample size for
+Maintainer: Daniel Goseberg <goseberg.d@gmail.com>
+Description: Samplesizr. Based on the book M. Kieser: Fallzahlberechnung 
+    in der medizinischen Forschung (2018).
+    This macro deploys functions to compute the sample size for
     clinical trials in different situations. There are functions
     for comparing groups with normal distributed (z-test, t-test,
     ANCOVA, f-test) or binary data (Chi-Square-test, Fisher-Boschloo-
@@ -14,6 +14,6 @@ Description: Samplesizr. Based on the book Fallzahlberechnung
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Imports: MASS 
+Imports: MASS, stats, BiasedUrn
 Suggests: testthat
 RoxygenNote: 6.0.1

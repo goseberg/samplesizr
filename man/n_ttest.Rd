@@ -9,7 +9,8 @@ n_ttest(effect, sd, alpha, power, r = 1)
 \arguments{
 \item{effect}{Effect \eqn{\Delta_A} used as alternative hypothesis.}
 
-\item{sd}{Standard deviation \eqn{\sigma}.}
+\item{sd}{Standard deviation \eqn{\sigma} of the Data on the
+alternative hypothesis.}
 
 \item{alpha}{Significance level \eqn{\alpha}.}
 

@@ -42,7 +42,8 @@ the iterative approach is used.}
   \item{Alternative Hypothesis:}{\eqn{|p_Y - p_X| \ge \Delta_A}}
 }
 
-[1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
+[1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018],
+1th Edition
 }
 \examples{
 n_chisq(p_Y = .5, p_X = .3, alpha = .05, power = .8, r = 2)

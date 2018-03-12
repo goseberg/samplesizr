@@ -1,8 +1,8 @@
 #' Sample Size Calculation for the Analysis of Covariances (ANCOVA)
 #'
-#' \code{n_ancova} performs the Sample Size calculation for the test on
-#'   mean difference for two samples with an Analysis of
-#'   Covariances (ANCOVA).
+#' \code{n_ancova} performs the Sample size calculation for the test on
+#'   mean difference for two samples with respect to normal data using the
+#'   Analysis of Covariances (ANCOVA).
 #'   The method is based on the pages 18 - 20 in [1]. The Sample Size
 #'   is calculated using an approximative formula,
 #'   suggested by Frison & Pocock (1999), implemented (4.14) in [1].
@@ -82,24 +82,24 @@ n_ancova <- function(effect, corr, sd, alpha, power, r = 1, gs = TRUE){
 print.n_ancova <- function(x, ...){
 
   cat("Sample size calculation for ANCOVA comparing two
-samples (two-sided alternative).\n"
+samples with respect to normal data(two-sided alternative).\n"
   )
-  if(x$gs == TRUE) {cat("Guenther/Schouten correcture performed.")}
-  else {cat("No Guenther/Schouten correcture performed.")}
+  if(x$gs == TRUE) {cat("Guenther/Schouten correction performed. \n")}
+  else {cat("No Guenther/Schouten correction performed. \n")}
 
   cat(sprintf(
     "Input Parameters \n
 Significance level : %.3f
-Desired Power : %.2f %%
+Desired power : %.2f %%
 Effect size : %.2f
 Correlation : %.2f
 Standard deviation : %.2f
 Allocation : %.2f \n
 Results of sample size calculation \n
-n Group X : %i
-n Group Y : %i
-n Total : %i
-Resulting Power : %5f." ,
+n group X : %i
+n group Y : %i
+n total : %i
+Actual power : %5f." ,
 
     x$alpha,
     x$power*100,

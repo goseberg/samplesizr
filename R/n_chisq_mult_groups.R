@@ -118,14 +118,14 @@ print.n_chisq_mult_groups <- function(x, ...){
 
   cat(sprintf("Input Parameters \n
 Significance level : %.3f
-Desired Power : %.2f %%
+Desired power : %.2f %%
 Number of groups : %i
 Expectation on Alternative : %s
 
 Results of sample size calculation \n
 n per group : %i
 n total : %i
-Resulting Power : %.5f %%",
+Resulting power : %.5f %%",
 
 x$alpha,
 x$power*100,

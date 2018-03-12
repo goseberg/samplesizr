@@ -1,7 +1,8 @@
 #' Sample Size Calculation for the two-sided t-Test
 #'
-#' \code{n_ttest} performs the Sample Size calculation for the t-Test
-#'   to the level \eqn{\alpha} comparing two independent samples.
+#' \code{n_ttest} performs the Sample size calculation for the t-Test
+#'   to the level \eqn{\alpha} comparing two independent samples with respect
+#'   to normal data.
 #'   The method is based on the pages 16 - 18 in [1].
 #' \describe{
 #'   \item{Null Hypothesis:}{\eqn{\mu_Y - \mu_X = 0}}
@@ -126,19 +127,19 @@ power_ttest <- function(effect, sd, n_X, alpha, r = 1){
 print.n_ttest <- function(x, ...){
 
   cat("Sample size calculation for Student's t-test comparing two independent \n")
-  cat("Samples (two-sided alternative).\n\n")
+  cat("samples with respect to normal data (two-sided alternative).\n\n")
   cat(sprintf(
 "Input Parameters \n
 Significance level : %.3f
-Desired Power : %.2f %%
+Desired power : %.2f %%
 Effect size : %.2f
 Standard deviation : %.2f
 Allocation : %.2f \n
 Results of sample size calculation \n
-n Group X : %i
-n Group Y : %i
-n Total : %i
-Resulting Power : %.5f %%",
+n group X : %i
+n group Y : %i
+n total : %i
+Actual power : %.5f %%",
 
     x$alpha,
     x$power*100,
