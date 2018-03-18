@@ -236,8 +236,8 @@ Rate group Y : %.3f
 Rate group X : %.3f
 
 Results of sample size calculation \n
-n group X : %i
-n group Y : %i
+n control group : %i
+n intervention group : %i
 n total : %i
 Actual power : %.5f %%"
     ,

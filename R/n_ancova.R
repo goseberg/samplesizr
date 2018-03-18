@@ -93,8 +93,8 @@ Correlation : %.2f
 Standard deviation : %.2f
 Allocation : %.2f \n
 Results of sample size calculation \n
-n group X : %i
-n group Y : %i
+n control group : %i
+n intervention group : %i
 n total : %i" ,
 
     x$alpha,
