@@ -123,26 +123,25 @@ power_ftest <- function(mu_A, sd, n.groups, n_per_group, alpha) {
 print.n_ftest <- function(x, ...){
 
   cat("Sample size calculation for the F-test comparing\n")
-  cat("more than two independent groups with respect to normal data.\n ")
+  cat("more than two independent groups with respect to normal data.\n\n")
 
   cat(sprintf(
     "Input Parameters \n
-Significance level : %.3f
-Desired power : %.2f %%
 Number of groups : %i
 Means of the groups : %s
 Standard deviation : %.2f
-
+Significance level : %.3f
+Desired power : %.2f %% \n
 Results of sample size calculation \n
 n per group : %i
 n total : %i
 Actual power : %.5f %%",
 
-    x$alpha,
-    x$power*100,
     x$n.groups,
     paste(x$mu_A, collapse = ","),
     x$sd,
+    x$alpha,
+    x$power*100,
     x$n_per_group,
     x$n,
     x$power_out*100

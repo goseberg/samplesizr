@@ -111,25 +111,25 @@ print.n_ztest <- function(x, ...){
 
   cat(sprintf(
       "Input Parameters \n
+Difference of means : %.2f
+Standard deviation : %.2f
 Significance level : %.3f
 Desired power : %.2f %%
-Effect size : %.2f
-Standard deviation : %.2f
 Allocation : %.2f \n
 Results of sample size calculation \n
-n control group : %i
 n intervention group : %i
+n control group : %i
 n total : %i
 Actual power : %.5f %%"
       ,
 
-      x$alpha,
-      x$power*100,
       x$effect,
       x$sd,
+      x$alpha,
+      x$power*100,
       x$r,
-      x$n_X,
       x$n_Y,
+      x$n_X,
       x$n,
       x$power_out*100
       )

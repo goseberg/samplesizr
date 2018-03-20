@@ -680,30 +680,30 @@ power_fisher_boschloo <- function(p_Y, p_X, n_Y, n_X, alpha,
 print.n_fisher_boschloo <- function(x, ...){
 
   cat("Sample size calculation for the Fisher-Boschloo test for two independent\n")
-  cat("samples with binary data using the absolute rate difference.\n\n ")
+  cat("samples with binary data using the absolute rate difference.\n")
+  if(x$exact == TRUE) {cat("Exact calculation performed. \n\n")}
+  else {cat("Approximative calculation performed. \n\n")}
 
   cat(sprintf(
     "Input Parameters \n
-Significance level : %.3f
+Rate intervention group : %.3f
+Rate control group : %.3f
+Significance level : %.4f
 Desired power : %.2f %%
-Allocation : %.2f
-Rate group Y : %.3f
-Rate group X : %.3f
 Step width : %.4f
-
+Allocation : %.2f \n
 Results of sample size calculation \n
-n control group : %i
 n intervention group : %i
+n control group : %i
 n total : %i
-Actual power : %.5f %%"
-,
+Actual power : %.5f %%",
 
-    x$alpha,
-    x$power*100,
-    x$r,
     x$p_Y,
     x$p_X,
+    x$alpha,
+    x$power*100,
     x$SW,
+    x$r,
     x$n_Y,
     x$n_X,
     x$n,

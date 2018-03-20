@@ -225,30 +225,29 @@ power_binomial <-function(p_Y, p_X, n_Y, n_X, alpha, power.exact)
 print.n_chisq <- function(x, ...){
 
   cat("Sample size calculation for the Chi-Square test for two independent\n")
-  cat("samples with respect to binary data using the absolute rate difference.\n\n ")
+  cat("samples with respect to binary data using the absolute rate difference.\n\n")
 
   cat(sprintf(
     "Input Parameters \n
-Significance level (two-sided): %.3f
+Rate intervention group : %.3f
+Rate conrol group : %.3f
+Significance level (two-sided): %.4f
 Desired power : %.2f %%
-Allocation : %.2f
-Rate group Y : %.3f
-Rate group X : %.3f
-
+Allocation : %.2f \n
 Results of sample size calculation \n
-n control group : %i
 n intervention group : %i
+n control group : %i
 n total : %i
 Actual power : %.5f %%"
     ,
 
+    x$p_Y,
+    x$p_X,
     x$alpha,
     x$power*100,
     x$r,
-    x$p_Y,
-    x$p_X,
-    x$n_X,
     x$n_Y,
+    x$n_X,
     x$n,
     x$power_out*100
   )

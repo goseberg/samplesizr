@@ -79,32 +79,31 @@ n_ancova <- function(effect, corr, sd, alpha, power, r = 1, gs = TRUE){
 print.n_ancova <- function(x, ...){
 
   cat("Sample size calculation for ANCOVA comparing two
-samples with respect to normal data(two-sided alternative).\n"
-  )
-  if(x$gs == TRUE) {cat("Guenther/Schouten correction performed. \n")}
-  else {cat("No Guenther/Schouten correction performed. \n")}
+samples with respect to normal data (two-sided alternative).\n")
+  if(x$gs == TRUE) {cat("Guenther/Schouten correction performed. \n\n")}
+  else {cat("No Guenther/Schouten correction performed. \n\n")}
 
   cat(sprintf(
     "Input Parameters \n
-Significance level : %.3f
+Difference of means : %.3f
+Correlation to covariate : %.3f
+Standard deviation : %.3f
+Significance level : %.4f
 Desired power : %.2f %%
-Effect size : %.2f
-Correlation : %.2f
-Standard deviation : %.2f
 Allocation : %.2f \n
 Results of sample size calculation \n
-n control group : %i
 n intervention group : %i
+n control group : %i
 n total : %i" ,
 
-    x$alpha,
-    x$power*100,
     x$effect,
     x$corr,
     x$sd,
+    x$alpha,
+    x$power*100,
     x$r,
-    x$n_X,
     x$n_Y,
+    x$n_X,
     x$n
   )
   )
