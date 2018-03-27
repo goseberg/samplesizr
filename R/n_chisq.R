@@ -50,7 +50,7 @@ n_chisq <- function(p_Y, p_X, alpha, power, r, power.exact = TRUE) {
 
   p_0     <- (p_X + r*p_Y) / (1+r)
   effect  <- p_Y - p_X
-  z_alpha <- qnorm( 1 - alpha/2 )
+  z_alpha <- qnorm( 1 - alpha )
 
   if (power.exact == FALSE) {
 
@@ -133,7 +133,7 @@ n_chisq <- function(p_Y, p_X, alpha, power, r, power.exact = TRUE) {
 #' @return \code{power_binomial} returns the power.
 #'
 #' @examples
-#' power_binomial(p_Y = .5, p_X = .3, n_Y = 100, n_X = 50, alpha = .05, power.exact = TRUE)
+#' power_binomial(p_Y = .5, p_X = .3, n_Y = 100, n_X = 50, alpha = .025, power.exact = TRUE)
 #'
 #' @details [1] M.Kieser: Fallzahlberechnung in der medizinischen Forschung [2018], 1th Edition
 
@@ -156,7 +156,8 @@ power_binomial <-function(p_Y, p_X, n_Y, n_X, alpha, power.exact)
         } else {
           P_0 <- (x+y)/(n_X + n_Y)
           u <- sqrt((n_X*n_Y)/(n_X+n_Y))  *  (((y/n_Y)-(x/n_X)) / sqrt( P_0 * (1 - P_0) ))
-          entscheidung <- (u>=qnorm(1-alpha/2))
+          if (p_Y > p_X) { entscheidung <- (u >= qnorm(1-alpha)) }
+          else {entscheidung <- (u <= - qnorm(1-alpha)) }
         }
 
         #Control group
@@ -168,7 +169,7 @@ power_binomial <-function(p_Y, p_X, n_Y, n_X, alpha, power.exact)
       }
     }
   } else { # Power calculation following the bottom of p. 22
-    z_alpha <- qnorm(1 - alpha/2)
+    z_alpha <- qnorm(1 - alpha)
     r       <- n_Y / n_X
     p_0     <- (p_X + r*p_Y) / (1 + r)
     sigma_0 <- sqrt( ((1 + r) / r) * (1 / n_X) * p_0 * (1 - p_0) )
@@ -224,14 +225,14 @@ power_binomial <-function(p_Y, p_X, n_Y, n_X, alpha, power.exact)
 
 print.n_chisq <- function(x, ...){
 
-  cat("Sample size calculation for the Chi-Square test for two independent\n")
+  cat("Sample size calculation for the one-sided Chi-Square test for two independent\n")
   cat("samples with respect to binary data using the absolute rate difference.\n\n")
 
   cat(sprintf(
     "Input Parameters \n
 Rate intervention group : %.3f
 Rate conrol group : %.3f
-Significance level (two-sided): %.4f
+Significance level (one-sided): %.4f
 Desired power : %.2f %%
 Allocation : %.2f \n
 Results of sample size calculation \n

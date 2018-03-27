@@ -33,8 +33,8 @@
   } else{
 
     if (binary == TRUE){ # Chi Square Scenario
-      if (var_1 <= var_2) {
-        stop("p_Y must be larger than p_X.")
+      if (var_1 == var_2) {
+        stop("p_Y must be different to p_X.")
       }
       if (var_1 < 0 || var_1 > 1){
         stop("p_Y must be between 0 and 1.")

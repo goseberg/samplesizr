@@ -58,7 +58,7 @@ n.r       <- c(252, 342)
 for (r in 1:2) {
   for (i_p_X in 1:length(p_X_vector)) {
 
-    alpha <- .05
+    alpha <- .025
     power <- .80
     p_X <- p_X_vector[i_p_X]
     p_Y <- p_Y_vector[i_p_X]
@@ -127,7 +127,7 @@ for (r in 1:2) {
 
 for (i_r in 1:length(r_vector)) {
 
-  alpha <- .05
+  alpha <- .025
   power <- .80
   p_X <- .3
   p_Y <- .5
